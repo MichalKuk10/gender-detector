@@ -1,6 +1,5 @@
 package project.service;
 
-import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import project.dao.GenderTextImplDAO;
 import project.model.Gender;
@@ -60,6 +59,18 @@ public class GenderService {
 
     }
 
+    public Gender callCheckGenderMethod(String variant, String name) throws IOException {
+        switch (variant){
+            case "firstName":
+                return checkGender(name);
+            case "fullName":
+                checkGenderByFullName(name);
+                break;
+        }
+        return Gender.INCONCLUSIVE;
+
+    }
+
     private boolean checkIfNameExist(String filepath, String name) {
         List<String> stringList = fetchList(filepath);
         return stringList.stream().anyMatch(element -> element.equals(name));
@@ -79,17 +90,7 @@ public class GenderService {
         return Gender.INCONCLUSIVE;
     }
 
-    public Gender callCheckGenderMethod(String variant, String name) throws IOException {
-        switch (variant){
-            case "firstName":
-                return checkGender(name);
-            case "fullName":
-                checkGenderByFullName(name);
-                break;
-        }
-        return Gender.INCONCLUSIVE;
 
-    }
 
 
 }

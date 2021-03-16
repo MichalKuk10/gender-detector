@@ -1,6 +1,5 @@
 package project.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import project.model.Gender;
@@ -26,10 +25,10 @@ public class GenderController {
     @ResponseBody
     @ResponseStatus(OK)
     public Gender checkGenderBasedOnName(@RequestParam(value="variant") String variant, @RequestParam(value="name") String name) throws IOException {
-        return  genderService.checkGender(variant, name);
+        return genderService.checkGender(variant, name);
     }
 
-    @GetMapping
+    @GetMapping("tokens")
     @ResponseBody
     @ResponseStatus(OK)
     public String returnAllNames() throws IOException {

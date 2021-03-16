@@ -21,7 +21,7 @@ class GenderServiceTest {
     GenderTextImplDAO genderDAO;
 
     @BeforeEach
-    public void init() throws IOException {
+    public void init()  {
         MockitoAnnotations.initMocks(this);
 
     }

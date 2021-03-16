@@ -25,7 +25,6 @@ class GenderControllerTest {
     @Autowired
     private WebApplicationContext webAppContext;
     private MockMvc mockMvc;
-    private GenderController controller;
 
     @BeforeEach
     public void setup() {

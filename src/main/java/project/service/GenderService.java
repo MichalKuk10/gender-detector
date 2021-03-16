@@ -6,6 +6,7 @@ import project.model.Gender;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,22 +37,27 @@ public class GenderService {
         return null;
     }
 
-//    public Gender checkGenderByFullName(String name){
-//        String[] splitName = name.split(" ");
-//
-//        int femaleCount;
-//        int maleCount;
-//        int inconclusiveCount;
-//
-//        for (int i = 0; i < splitName.length - 1; i++) {
-//            if (splitName[i])
-//        }
-//    }
+    public List<List<String>> fetchAllTokens() {
+        List<String> femaleList = fetchList(filepathFemale);
+        List<String> maleList = fetchList(filepathMale);
+
+        List<List<String>> bothGendersList = new ArrayList<>();
+
+        bothGendersList.add(femaleList);
+        bothGendersList.add(maleList);
+
+        return bothGendersList;
+
+
+    }
 
     private boolean checkIfNameExist(File filepath, String name) throws IOException {
-        List<String> stringList = dao.fetchTokens(filepath);
-
+        List<String> stringList = fetchList(filepath);
         return stringList.stream().anyMatch(element -> element.equals(name));
+    }
+
+    private List<String> fetchList(File filepath) {
+        return dao.fetchTokens(filepath);
     }
 
 

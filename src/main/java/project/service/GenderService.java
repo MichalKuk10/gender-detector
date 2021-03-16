@@ -57,7 +57,7 @@ public class GenderService {
 
 
     private boolean checkIfNameExist(String filepath, String name) {
-        return dao.fetchTokensByName(filepath, name);
+        return dao.checkIfTokenExists(filepath, name);
     }
 
     private Gender estimateGender(int femaleCounter, int maleCounter) {

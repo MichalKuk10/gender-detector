@@ -11,13 +11,13 @@ public class GenderTextImplDAO implements GenderDAO {
     private final File FILE_PATH_MALE = new File("/Users/michal/Desktop/Codecool/Projects/gender-detector/src/main/resources/male.txt");
 
     @Override
-    public boolean fetchTokensByName(String filepath, String name) {
+    public boolean checkIfTokenExists(String filepath, String name) {
 
         try {
             BufferedReader bufferedReader;
             if (filepath.equals("female")) {
                 bufferedReader = new BufferedReader(new FileReader(FILE_PATH_FEMALE));
-            } else {
+            }else {
                 bufferedReader = new BufferedReader(new FileReader(FILE_PATH_MALE));
 
             }

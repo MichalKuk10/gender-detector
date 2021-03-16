@@ -27,11 +27,7 @@ public class GenderController {
     @ResponseBody
     @ResponseStatus(OK)
     public Gender checkGenderBasedOnName(@RequestParam(value="variant") String variant, @RequestParam(value="name") String name) throws IOException {
-        if(variant.equals("firstName")) {
-            return genderService.checkGender(name);
-        }else{
-             return genderService.checkGenderByFullName(name);
-        }
+        return  genderService.callCheckGenderMethod(variant, name);
     }
 
     @GetMapping

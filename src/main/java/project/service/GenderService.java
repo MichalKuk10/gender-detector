@@ -1,10 +1,9 @@
 package project.service;
 
+import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 import project.dao.GenderTextImplDAO;
 import project.model.Gender;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +20,15 @@ public class GenderService {
         this.dao = dao;
     }
 
-    public Gender checkGender(String name) throws IOException {
+    public Gender checkGender(String name){
 
-        try {
-            if (checkIfNameExist(FEMALE_PATH, name)) {
-                return Gender.FEMALE;
-            } else if (checkIfNameExist(MALE_PATH, name)) {
-                return Gender.MALE;
-            }
-            return  Gender.INCONCLUSIVE;
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (checkIfNameExist(FEMALE_PATH, name)) {
+            return Gender.FEMALE;
+        } else if (checkIfNameExist(MALE_PATH, name)) {
+            return Gender.MALE;
         }
+        return  Gender.INCONCLUSIVE;
 
-      return Gender.INCONCLUSIVE;
     }
 
     public Gender checkGenderByFullName(String name) throws IOException {
@@ -66,12 +60,12 @@ public class GenderService {
 
     }
 
-    private boolean checkIfNameExist(String filepath, String name) throws IOException {
+    private boolean checkIfNameExist(String filepath, String name) {
         List<String> stringList = fetchList(filepath);
         return stringList.stream().anyMatch(element -> element.equals(name));
     }
 
-    private List<String> fetchList(String filepath) {
+    private List<String> fetchList(String filepath){
         return dao.fetchTokens(filepath);
     }
 
@@ -83,6 +77,18 @@ public class GenderService {
         }
 
         return Gender.INCONCLUSIVE;
+    }
+
+    public Gender callCheckGenderMethod(String variant, String name) throws IOException {
+        switch (variant){
+            case "firstName":
+                return checkGender(name);
+            case "fullName":
+                checkGenderByFullName(name);
+                break;
+        }
+        return Gender.INCONCLUSIVE;
+
     }
 
 

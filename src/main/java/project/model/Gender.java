@@ -1,4 +1,6 @@
 package project.model;
 
-public class Gender {
+public enum Gender {
+
+    FEMALE, MALE, INCONCLUSIVE
 }

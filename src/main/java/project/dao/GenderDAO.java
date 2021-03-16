@@ -1,9 +1,12 @@
 package project.dao;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public interface GenderDAO {
 
-    List<String> fetchTokens(String filepath);
+    boolean fetchTokensByName(String filepath, String name);
+
+    String fetchAllNamesFromDatabase(File filepath) throws IOException;
 }

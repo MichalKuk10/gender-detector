@@ -3,9 +3,8 @@ package project.service;
 import org.springframework.stereotype.Service;
 import project.dao.GenderTextImplDAO;
 import project.model.Gender;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class GenderService {
@@ -19,14 +18,14 @@ public class GenderService {
         this.dao = dao;
     }
 
-    public Gender checkGender(String name){
+    public Gender checkGenderByFirstName(String name) {
 
         if (checkIfNameExist(FEMALE_PATH, name)) {
             return Gender.FEMALE;
         } else if (checkIfNameExist(MALE_PATH, name)) {
             return Gender.MALE;
         }
-        return  Gender.INCONCLUSIVE;
+        return Gender.INCONCLUSIVE;
 
     }
 
@@ -46,51 +45,30 @@ public class GenderService {
         return estimateGender(femaleCounter, maleCounter);
     }
 
-    public List<List<String>> fetchAllTokens() {
-        List<String> femaleList = fetchList(FEMALE_PATH);
-        List<String> maleList = fetchList(MALE_PATH);
 
-        List<List<String>> bothGendersList = new ArrayList<>();
+    public String fetchAllNames() throws IOException {
+        String femaleNames = dao.fetchFemaleNamesFromDatabase();
+        String maleNames = dao.fetchMaleNamesFromDatabase();
 
-        bothGendersList.add(femaleList);
-        bothGendersList.add(maleList);
-
-        return bothGendersList;
-
+        return femaleNames + " " + maleNames;
     }
 
-    public Gender callCheckGenderMethod(String variant, String name) throws IOException {
-        switch (variant){
-            case "firstName":
-                return checkGender(name);
-            case "fullName":
-                checkGenderByFullName(name);
-                break;
-        }
+    public Gender checkGender(String variant, String name) {
+        if (variant.equals("firstName")) return checkGenderByFirstName(name);
+        else if (variant.equals("fullName")) return checkGenderByFullName(name);
         return Gender.INCONCLUSIVE;
 
     }
+
 
     private boolean checkIfNameExist(String filepath, String name) {
-        List<String> stringList = fetchList(filepath);
-        return stringList.stream().anyMatch(element -> element.equals(name));
+        return dao.fetchTokensByName(filepath, name);
     }
 
-    private List<String> fetchList(String filepath){
-        return dao.fetchTokens(filepath);
+    private Gender estimateGender(int femaleCounter, int maleCounter) {
+        if (femaleCounter > maleCounter) return Gender.FEMALE;
+        else if (femaleCounter < maleCounter) return Gender.MALE;
+        else return Gender.INCONCLUSIVE;
     }
-
-    private Gender estimateGender(int femaleCounter, int maleCounter){
-        if(femaleCounter > maleCounter){
-            return Gender.FEMALE;
-        }else if (femaleCounter < maleCounter) {
-            return Gender.MALE;
-        }
-
-        return Gender.INCONCLUSIVE;
-    }
-
-
-
 
 }

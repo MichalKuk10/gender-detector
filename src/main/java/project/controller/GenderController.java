@@ -7,7 +7,6 @@ import project.model.Gender;
 import project.service.GenderService;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -27,14 +26,14 @@ public class GenderController {
     @ResponseBody
     @ResponseStatus(OK)
     public Gender checkGenderBasedOnName(@RequestParam(value="variant") String variant, @RequestParam(value="name") String name) throws IOException {
-        return  genderService.callCheckGenderMethod(variant, name);
+        return  genderService.checkGender(variant, name);
     }
 
     @GetMapping
     @ResponseBody
     @ResponseStatus(OK)
-    public List<List<String>> returnAllNames(){
-        return genderService.fetchAllTokens();
+    public String returnAllNames() throws IOException {
+        return genderService.fetchAllNames();
     }
 
 

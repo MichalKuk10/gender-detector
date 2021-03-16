@@ -25,11 +25,11 @@ public class GenderController {
 
     }
 
-    @GetMapping("gender/full/{name}")
-    @ResponseBody
-    public Gender checkGenderBasedOnFullName(@PathVariable("name") String name){
-        return genderService.checkGenderByFullName(name);
-    }
+//    @GetMapping("gender/full/{name}")
+//    @ResponseBody
+//    public Gender checkGenderBasedOnFullName(@PathVariable("name") String name){
+//        return genderService.checkGenderByFullName(name);
+//    }
 
 
 }

@@ -26,15 +26,29 @@ public class GenderService {
                 return Gender.FEMALE;
             } else if (checkIfNameExist(filepathMale, name)) {
                 return Gender.MALE;
-            } else {
-                return Gender.INCONCLUSIVE;
             }
-
+            return  Gender.INCONCLUSIVE;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return null;
+      return Gender.INCONCLUSIVE;
+    }
+
+    public Gender checkGenderByFullName(String name) throws IOException {
+        String[] split = name.split(" ");
+        int femaleCounter = 0;
+        int maleCounter = 0;
+
+        for (String element : split) {
+            if (checkIfNameExist(filepathFemale, element)) {
+                femaleCounter++;
+            } else if (checkIfNameExist(filepathMale, element)) {
+                maleCounter++;
+            }
+        }
+
+        return estimateGender(femaleCounter, maleCounter);
     }
 
     public List<List<String>> fetchAllTokens() {
@@ -48,7 +62,6 @@ public class GenderService {
 
         return bothGendersList;
 
-
     }
 
     private boolean checkIfNameExist(File filepath, String name) throws IOException {
@@ -58,6 +71,16 @@ public class GenderService {
 
     private List<String> fetchList(File filepath) {
         return dao.fetchTokens(filepath);
+    }
+
+    private Gender estimateGender(int femaleCounter, int maleCounter){
+        if(femaleCounter > maleCounter){
+            return Gender.FEMALE;
+        }else if (femaleCounter < maleCounter) {
+            return Gender.MALE;
+        }
+
+        return Gender.INCONCLUSIVE;
     }
 
 

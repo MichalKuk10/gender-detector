@@ -21,9 +21,9 @@ public class GenderService {
     public Gender checkGender(String name) throws IOException {
 
         try {
-            if (fetchResult(filepathFemale, name)) {
+            if (checkIfNameExist(filepathFemale, name)) {
                 return Gender.FEMALE;
-            } else if (fetchResult(filepathMale, name)) {
+            } else if (checkIfNameExist(filepathMale, name)) {
                 return Gender.MALE;
             } else {
                 return Gender.INCONCLUSIVE;
@@ -48,15 +48,10 @@ public class GenderService {
 //        }
 //    }
 
-    private boolean fetchResult(File filepath, String name) throws IOException {
+    private boolean checkIfNameExist(File filepath, String name) throws IOException {
         List<String> stringList = dao.fetchTokens(filepath);
-        for (String element : stringList) {
-            if (element.equals(name)) {
-                return true;
-            }
-        }
-        return false;
 
+        return stringList.stream().anyMatch(element -> element.equals(name));
     }
 
 

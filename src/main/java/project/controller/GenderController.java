@@ -2,6 +2,7 @@ package project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import project.model.Gender;
 import project.service.GenderService;
 
 import java.io.IOException;
@@ -19,16 +20,15 @@ public class GenderController {
 
     @GetMapping("gender/{name}")
     @ResponseBody
-    public String checkGenderBasedOnName(@PathVariable("name") String name) throws IOException {
+    public Gender checkGenderBasedOnName(@PathVariable("name") String name) throws IOException {
         return genderService.checkGender(name);
 
     }
 
     @GetMapping("gender/full/{name}")
     @ResponseBody
-    public String checkGenderBasedOnFullName(@PathVariable("name") String name){
-
-        return "Works";
+    public Gender checkGenderBasedOnFullName(@PathVariable("name") String name){
+        return genderService.checkGenderByFullName(name);
     }
 
 

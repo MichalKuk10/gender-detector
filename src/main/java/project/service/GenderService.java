@@ -39,6 +39,10 @@ public class GenderService {
         return null;
     }
 
+    public Gender checkGenderByFullName(String name){
+        return null;
+    }
+
     private boolean fetchResult(File filepath, String name) throws IOException {
         List<String> stringList = dao.fetchDataFromFile(filepath);
         for (String element : stringList){

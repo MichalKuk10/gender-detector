@@ -30,7 +30,7 @@ public class GenderService {
 
     }
 
-    public Gender checkGenderByFullName(String name) throws IOException {
+    public Gender checkGenderByFullName(String name) {
         String[] split = name.split(" ");
         int femaleCounter = 0;
         int maleCounter = 0;

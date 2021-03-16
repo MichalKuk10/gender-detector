@@ -8,7 +8,6 @@ import java.io.IOException;
 
 @Service
 public class GenderService {
-
     private GenderTextImplDAO dao;
     private final String FEMALE_PATH = "female";
     private final String MALE_PATH = "male";
@@ -20,11 +19,9 @@ public class GenderService {
 
     public Gender checkGenderByFirstName(String name) {
 
-        if (checkIfNameExist(FEMALE_PATH, name)) {
-            return Gender.FEMALE;
-        } else if (checkIfNameExist(MALE_PATH, name)) {
-            return Gender.MALE;
-        }
+        if (checkIfNameExist(FEMALE_PATH, name)) return Gender.FEMALE;
+        else if (checkIfNameExist(MALE_PATH, name)) return Gender.MALE;
+
         return Gender.INCONCLUSIVE;
 
     }
@@ -35,11 +32,9 @@ public class GenderService {
         int maleCounter = 0;
 
         for (String element : split) {
-            if (checkIfNameExist(FEMALE_PATH, element)) {
-                femaleCounter++;
-            } else if (checkIfNameExist(MALE_PATH, element)) {
-                maleCounter++;
-            }
+            if (checkIfNameExist(FEMALE_PATH, element)) femaleCounter++;
+            else if (checkIfNameExist(MALE_PATH, element)) maleCounter++;
+
         }
 
         return estimateGender(femaleCounter, maleCounter);

@@ -35,16 +35,18 @@ public class GenderTextImplDAO implements GenderDAO {
         return false;
     }
 
+    @Override
     public String fetchFemaleNamesFromDatabase() throws IOException {
         return fetchAllNamesFromDatabase(FILE_PATH_FEMALE);
     }
 
+    @Override
     public String fetchMaleNamesFromDatabase() throws IOException {
         return fetchAllNamesFromDatabase(FILE_PATH_MALE);
     }
 
 
-    public String fetchAllNamesFromDatabase(File filepath) throws IOException {
+    private String fetchAllNamesFromDatabase(File filepath) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
         String element;
         StringBuilder names = new StringBuilder();

@@ -8,5 +8,7 @@ public interface GenderDAO {
 
     boolean fetchTokensByName(String filepath, String name);
 
-    String fetchAllNamesFromDatabase(File filepath) throws IOException;
+    String fetchFemaleNamesFromDatabase() throws IOException;
+
+    String fetchMaleNamesFromDatabase() throws IOException;
 }

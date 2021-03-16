@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface GenderDAO {
 
-    List<String> fetchTokens(File filepath);
+    List<String> fetchTokens(String filepath);
 }

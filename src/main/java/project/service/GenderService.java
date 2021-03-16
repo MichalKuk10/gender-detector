@@ -11,9 +11,11 @@ import java.util.List;
 
 @Service
 public class GenderService {
-    private final File filepathFemale = new File("/Users/michal/Desktop/Codecool/Projects/gender-detector/src/main/resources/female.txt");
-    private final File filepathMale = new File("/Users/michal/Desktop/Codecool/Projects/gender-detector/src/main/resources/male.txt");
+
     private GenderTextImplDAO dao;
+    private final String FEMALE_PATH = "female";
+    private final String MALE_PATH = "male";
+
 
     public GenderService(GenderTextImplDAO dao) {
         this.dao = dao;
@@ -22,9 +24,9 @@ public class GenderService {
     public Gender checkGender(String name) throws IOException {
 
         try {
-            if (checkIfNameExist(filepathFemale, name)) {
+            if (checkIfNameExist(FEMALE_PATH, name)) {
                 return Gender.FEMALE;
-            } else if (checkIfNameExist(filepathMale, name)) {
+            } else if (checkIfNameExist(MALE_PATH, name)) {
                 return Gender.MALE;
             }
             return  Gender.INCONCLUSIVE;
@@ -41,9 +43,9 @@ public class GenderService {
         int maleCounter = 0;
 
         for (String element : split) {
-            if (checkIfNameExist(filepathFemale, element)) {
+            if (checkIfNameExist(FEMALE_PATH, element)) {
                 femaleCounter++;
-            } else if (checkIfNameExist(filepathMale, element)) {
+            } else if (checkIfNameExist(MALE_PATH, element)) {
                 maleCounter++;
             }
         }
@@ -52,8 +54,8 @@ public class GenderService {
     }
 
     public List<List<String>> fetchAllTokens() {
-        List<String> femaleList = fetchList(filepathFemale);
-        List<String> maleList = fetchList(filepathMale);
+        List<String> femaleList = fetchList(FEMALE_PATH);
+        List<String> maleList = fetchList(MALE_PATH);
 
         List<List<String>> bothGendersList = new ArrayList<>();
 
@@ -64,12 +66,12 @@ public class GenderService {
 
     }
 
-    private boolean checkIfNameExist(File filepath, String name) throws IOException {
+    private boolean checkIfNameExist(String filepath, String name) throws IOException {
         List<String> stringList = fetchList(filepath);
         return stringList.stream().anyMatch(element -> element.equals(name));
     }
 
-    private List<String> fetchList(File filepath) {
+    private List<String> fetchList(String filepath) {
         return dao.fetchTokens(filepath);
     }
 

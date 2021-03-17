@@ -9,7 +9,6 @@ import org.mockito.MockitoAnnotations;
 import project.dao.GenderTextImplDAO;
 import project.model.Gender;
 
-import java.io.IOException;
 
 import static org.mockito.Mockito.when;
 
@@ -21,14 +20,14 @@ class GenderServiceTest {
     GenderTextImplDAO genderDAO;
 
     @BeforeEach
-    public void init()  {
+    public void init() {
         MockitoAnnotations.initMocks(this);
 
     }
 
 
     @Test
-    public void should_check_if_appropriate_gender_is_returned_when_name_provided(){
+    public void should_check_if_appropriate_gender_is_returned_when_name_provided() {
         //given
         String name = "Maciej";
         String variant = "firstName";
@@ -42,7 +41,7 @@ class GenderServiceTest {
     }
 
     @Test
-    public void should_return_inconclusive_when_wrong_name_provided(){
+    public void should_return_inconclusive_when_wrong_name_provided() {
         //given
         String wrongName = "gdsfsf";
         String variant = "firstName";
@@ -52,10 +51,9 @@ class GenderServiceTest {
     }
 
 
-    private boolean prepareFakeData(){
+    private boolean prepareFakeData() {
         return true;
     }
-
 
 
 }

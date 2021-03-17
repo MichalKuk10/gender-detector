@@ -44,7 +44,7 @@ public class GenderService {
         String femaleNames = dao.fetchFemaleNamesFromDatabase();
         String maleNames = dao.fetchMaleNamesFromDatabase();
 
-        return  femaleNames  + maleNames;
+        return femaleNames + maleNames;
     }
 
     public Gender checkGender(String variant, String name) {

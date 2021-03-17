@@ -17,7 +17,7 @@ public class GenderTextImplDAO implements GenderDAO {
             BufferedReader bufferedReader;
             if (filepath.equals("female")) {
                 bufferedReader = new BufferedReader(new FileReader(FILE_PATH_FEMALE));
-            }else {
+            } else {
                 bufferedReader = new BufferedReader(new FileReader(FILE_PATH_MALE));
 
             }
@@ -39,7 +39,7 @@ public class GenderTextImplDAO implements GenderDAO {
     public String fetchFemaleNamesFromDatabase() {
         try {
             return fetchAllNamesFromDatabase(FILE_PATH_FEMALE);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -49,7 +49,7 @@ public class GenderTextImplDAO implements GenderDAO {
     public String fetchMaleNamesFromDatabase() {
         try {
             return fetchAllNamesFromDatabase(FILE_PATH_MALE);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

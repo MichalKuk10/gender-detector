@@ -24,7 +24,7 @@ public class GenderController {
     @GetMapping("/check")
     @ResponseBody
     @ResponseStatus(OK)
-    public Gender checkGenderBasedOnName(@RequestParam(value="variant") String variant, @RequestParam(value="name") String name) throws IOException {
+    public Gender checkGenderBasedOnName(@RequestParam(value = "variant") String variant, @RequestParam(value = "name") String name) throws IOException {
         return genderService.checkGender(variant, name);
     }
 

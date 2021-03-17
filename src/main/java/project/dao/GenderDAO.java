@@ -6,7 +6,7 @@ public interface GenderDAO {
 
     boolean checkIfTokenExists(String filepath, String name);
 
-    String fetchFemaleNamesFromDatabase() throws IOException;
+    String fetchFemaleNamesFromDatabase();
 
-    String fetchMaleNamesFromDatabase() throws IOException;
+    String fetchMaleNamesFromDatabase();
 }

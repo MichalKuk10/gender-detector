@@ -31,7 +31,7 @@ public class GenderController {
     @GetMapping("/tokens")
     @ResponseBody
     @ResponseStatus(OK)
-    public String returnAllNames() throws IOException {
+    public String returnAllNames() {
         return genderService.fetchAllNames();
     }
 

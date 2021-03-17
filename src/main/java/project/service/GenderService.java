@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import project.dao.GenderTextImplDAO;
 import project.model.Gender;
 
-import java.io.IOException;
 
 @Service
 public class GenderService {
@@ -41,7 +40,7 @@ public class GenderService {
     }
 
 
-    public String fetchAllNames() throws IOException {
+    public String fetchAllNames() {
         String femaleNames = dao.fetchFemaleNamesFromDatabase();
         String maleNames = dao.fetchMaleNamesFromDatabase();
 

@@ -1,6 +1,6 @@
 # Gender-detector
 
-## Genderal Info
+## General Info
 
 Algorithm to determinate gender based on the name
 

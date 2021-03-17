@@ -28,7 +28,7 @@ public class GenderController {
         return genderService.checkGender(variant, name);
     }
 
-    @GetMapping("tokens")
+    @GetMapping("/tokens")
     @ResponseBody
     @ResponseStatus(OK)
     public String returnAllNames() throws IOException {

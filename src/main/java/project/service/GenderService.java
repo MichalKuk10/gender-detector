@@ -1,18 +1,19 @@
 package project.service;
 
 import org.springframework.stereotype.Service;
-import project.dao.GenderTextImplDAO;
+import project.dao.GenderDAO;
 import project.model.Gender;
 
 
 @Service
 public class GenderService {
-    private GenderTextImplDAO dao;
+    private GenderDAO dao;
     private final String FEMALE_PATH = "female";
     private final String MALE_PATH = "male";
 
 
-    public GenderService(GenderTextImplDAO dao) {
+    public GenderService(GenderDAO dao) {
+
         this.dao = dao;
     }
 
